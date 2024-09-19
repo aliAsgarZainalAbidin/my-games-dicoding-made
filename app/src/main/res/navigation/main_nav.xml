@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="id.deval.mygames.settings.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="id.deval.mygames.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+
+    <include-dynamic
+        android:id="@+id/favorite_nav"
+        app:graphPackage="id.deval.favorite"
+        app:graphResName="favorite_nav"
+        app:moduleName="favorite" />
+
+</navigation>

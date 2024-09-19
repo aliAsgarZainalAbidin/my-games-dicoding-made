@@ -1,0 +1,82 @@
+package id.deval.core.data.source.local.room.converter
+
+import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import id.deval.core.data.source.local.entity.AddedByStatusEntity
+import id.deval.core.data.source.local.entity.EsrbRatingEntity
+import id.deval.core.data.source.local.entity.MetacriticPlatformsItemEntity
+import id.deval.core.data.source.local.entity.PlatformsItemEntity
+import id.deval.core.data.source.local.entity.RatingsEntity
+import id.deval.core.data.source.local.entity.ReactionsEntity
+
+class GameConverterHelper {
+    @TypeConverter
+    fun fromArrayString(value: ArrayList<String>?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toArrayString(value: String) =
+        Gson().fromJson<ArrayList<String>>(value, object : TypeToken<ArrayList<String>>() {}.type)
+
+    @TypeConverter
+    fun fromListString(value: List<String>?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toListString(value: String) =
+        Gson().fromJson<List<String>>(value, object : TypeToken<List<String>>() {}.type)
+
+    @TypeConverter
+    fun fromArrayPlatformsItemEntity(value: List<PlatformsItemEntity>?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toArrayPlatformsItemEntity(value: String) = Gson().fromJson<List<PlatformsItemEntity>>(
+        value,
+        object : TypeToken<List<PlatformsItemEntity>>() {}.type
+    )
+
+    @TypeConverter
+    fun fromListMetacriticPlatformsItemEntity(value : List<MetacriticPlatformsItemEntity>?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toListMetacriticPlatformsItemEntity(value: String) = Gson().fromJson<List<MetacriticPlatformsItemEntity>>(
+        value,
+        object : TypeToken<List<MetacriticPlatformsItemEntity>>() {}.type
+    )
+
+    @TypeConverter
+    fun fromRatingsEntity(value: RatingsEntity?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toRatingsEntity(value: String) = Gson().fromJson<RatingsEntity>(
+        value,
+        object : TypeToken<RatingsEntity>() {}.type
+    )
+
+    @TypeConverter
+    fun fromAddedByStatusEntity(value : AddedByStatusEntity?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toAddedByStatusEntity(value: String) = Gson().fromJson<AddedByStatusEntity>(
+        value,
+        object : TypeToken<AddedByStatusEntity>() {}.type
+    )
+
+    @TypeConverter
+    fun fromEsrbRatingEntity(value : EsrbRatingEntity?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toEsrbRatingEntity(value: String) = Gson().fromJson<EsrbRatingEntity>(
+        value,
+        object : TypeToken<AddedByStatusEntity>() {}.type
+    )
+
+    @TypeConverter
+    fun fromReactionEntity(value : ReactionsEntity?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toReactionEntity(value: String) = Gson().fromJson<ReactionsEntity>(
+        value,
+        object : TypeToken<ReactionsEntity>() {}.type
+    )
+
+}
