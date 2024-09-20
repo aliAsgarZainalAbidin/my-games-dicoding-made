@@ -1,11 +1,14 @@
 package id.deval.core.data
 
 import id.deval.core.data.source.remote.network.ApiResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 abstract class NetworkBoundSource<ResultType,RequestType> {
 
@@ -17,7 +20,9 @@ abstract class NetworkBoundSource<ResultType,RequestType> {
             emit(Resource.Loading())
             when(val request = createCall().first()){
                 is ApiResponse.Success -> {
-                    saveCallResult(request.data)
+                    CoroutineScope(Dispatchers.IO).launch {
+                        saveCallResult(request.data)
+                    }
                     emitAll(loadFromDB().map { Resource.Success(it) })
                 }
 

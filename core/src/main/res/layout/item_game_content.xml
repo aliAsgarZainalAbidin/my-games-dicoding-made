@@ -2,15 +2,16 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_width="320dp"
+    android:layout_height="248dp"
+    android:layout_marginStart="24dp"
     android:background="@color/white"
     android:elevation="4dp"
     app:cardCornerRadius="24dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/iv_gamecontent_item"
@@ -59,18 +60,6 @@
             app:layout_constraintTop_toBottomOf="@id/mtv_gamecontent_genre"
             tools:text="Albion Online" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_gamecontent_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/game_content_horizontal"
-            android:layout_marginTop="@dimen/game_content_horizontal"
-            android:layout_marginBottom="8dp"
-            android:ellipsize="end"
-            android:maxLines="3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mtv_gamecontent_name"
-            tools:text="@tools:sample/lorem[200]" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

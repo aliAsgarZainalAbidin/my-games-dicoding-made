@@ -4,7 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import id.deval.core.BuildConfig
 import id.deval.core.data.source.remote.network.ApiService
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,8 +20,21 @@ class NetworkModule {
 
     @Provides
     fun provideOkHttpClient() : OkHttpClient {
+        val interceptor = Interceptor { chain ->
+            val originalRequst = chain.request()
+            val requestWithApiKey = originalRequst.url.newBuilder()
+                .addQueryParameter("key", BuildConfig.API_KEY)
+                .build()
+
+            val newRequest = originalRequst.newBuilder()
+                .url(requestWithApiKey)
+                .build()
+            chain.proceed(newRequest)
+        }
+
         return OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(interceptor)
             .connectTimeout(120, TimeUnit.SECONDS )
             .readTimeout(120, TimeUnit.SECONDS)
             .build()

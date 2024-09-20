@@ -11,7 +11,7 @@ data class GameResponse(
 	val suggestionsCount: Int? = null,
 
 	@field:SerializedName("rating")
-	val rating: Int? = null,
+	val rating: Double? = null,
 
 	@field:SerializedName("metacritic")
 	val metacritic: Int? = null,
@@ -59,7 +59,22 @@ data class GameResponse(
 	val slug: String? = null,
 
 	@field:SerializedName("released")
-	val released: String? = null
+	val released: String? = null,
+
+	@field:SerializedName("genres")
+	val genres: List<GenreResponse>? = null,
+
+	@field:SerializedName("short_screenshots")
+	val shortScreenshots: List<ShortScreenshotsResponse>? = null
+)
+
+
+data class ShortScreenshotsResponse(
+	@field:SerializedName("id")
+	val id : Int? = null,
+
+	@field:SerializedName("image")
+	val image : String? = null
 )
 
 data class PlatformsItemResponse(

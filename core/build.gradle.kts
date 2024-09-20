@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,6 +7,14 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
+
+val localProperties = File(rootProject.rootDir, "local.properties")
+val properties = Properties()
+if (localProperties.exists()) {
+    properties.load(localProperties.inputStream())
+}
+
+val apiKey: String = properties.getProperty("API_KEY") ?: ""
 
 android {
     namespace = "id.deval.core"
@@ -16,6 +26,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
 
     buildTypes {
         release {
@@ -24,6 +38,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_KEY", apiKey)
+        }
+
+        debug {
+            buildConfigField("String", "API_KEY", apiKey)
         }
     }
     compileOptions {
@@ -58,6 +77,9 @@ dependencies {
 
     implementation(libs.coroutines)
     implementation(libs.coroutines.android)
+
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
 
     implementation(libs.gson)
     implementation(libs.dagger.hilt)

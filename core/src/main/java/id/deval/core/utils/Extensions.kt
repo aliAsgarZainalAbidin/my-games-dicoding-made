@@ -8,28 +8,34 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import id.deval.core.data.source.local.entity.AddedByStatusEntity
 import id.deval.core.data.source.local.entity.EsrbRatingEntity
+import id.deval.core.data.source.local.entity.GenreEntity
 import id.deval.core.data.source.local.entity.MetacriticPlatformsItemEntity
 import id.deval.core.data.source.local.entity.PlatformEntity
 import id.deval.core.data.source.local.entity.PlatformsItemEntity
 import id.deval.core.data.source.local.entity.RatingsEntity
 import id.deval.core.data.source.local.entity.ReactionsEntity
 import id.deval.core.data.source.local.entity.RequirementsEntity
+import id.deval.core.data.source.local.entity.ShortScreenshotsEntity
 import id.deval.core.data.source.remote.response.AddedByStatusResponse
 import id.deval.core.data.source.remote.response.EsrbRatingResponse
+import id.deval.core.data.source.remote.response.GenreResponse
 import id.deval.core.data.source.remote.response.MetacriticPlatformsItemResponse
 import id.deval.core.data.source.remote.response.PlatformResponse
 import id.deval.core.data.source.remote.response.PlatformsItemResponse
 import id.deval.core.data.source.remote.response.RatingsResponse
 import id.deval.core.data.source.remote.response.ReactionsResponse
 import id.deval.core.data.source.remote.response.RequirementsResponse
+import id.deval.core.data.source.remote.response.ShortScreenshotsResponse
 import id.deval.core.domain.model.AddedByStatus
 import id.deval.core.domain.model.EsrbRating
+import id.deval.core.domain.model.Genre
 import id.deval.core.domain.model.MetacriticPlatformsItem
 import id.deval.core.domain.model.Platform
 import id.deval.core.domain.model.PlatformsItem
 import id.deval.core.domain.model.Ratings
 import id.deval.core.domain.model.Reactions
 import id.deval.core.domain.model.Requirements
+import id.deval.core.domain.model.ShortScreenshots
 
 
 fun NavController.safeNavigation(
@@ -132,4 +138,26 @@ fun ReactionsEntity.toDomain() = Reactions(
 fun MetacriticPlatformsItemEntity.toDomain() = MetacriticPlatformsItem(
     metascore = metascore,
     url = url
+)
+
+fun GenreResponse.toEntity() = GenreEntity(
+    name = name,
+    id = id,
+    slug = slug
+)
+
+fun GenreEntity.toDomain() = Genre(
+    name = name,
+    id = id,
+    slug = slug
+)
+
+fun ShortScreenshotsResponse.toEntity() = ShortScreenshotsEntity(
+    id = id,
+    image = image
+)
+
+fun ShortScreenshotsEntity.toDomain() = ShortScreenshots(
+    id = id,
+    image = image
 )

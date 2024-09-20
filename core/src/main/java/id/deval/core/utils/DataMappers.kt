@@ -27,7 +27,10 @@ object DataMappers {
                 ratingsCount = it.ratingsCount,
                 updated = it.updated,
                 slug = it.slug,
-                released = it.released
+                released = it.released,
+                genre = it.genres?.map { genre -> genre.toEntity() },
+                platforms = it.platforms?.map { plt -> plt?.toEntity() },
+                shortScreenshots = it.shortScreenshots?.map { sc -> sc.toEntity() }
             )
             listGame.add(game)
         }
@@ -51,7 +54,10 @@ object DataMappers {
                 ratingsCount = it.ratingsCount,
                 updated = it.updated,
                 slug = it.slug,
-                released = it.released
+                released = it.released,
+                genre = it.genre?.map { genre -> genre.toDomain() },
+                platforms = it.platforms?.map { plt -> plt?.toDomain() },
+                shortScreenshots = it.shortScreenshots?.map { sc -> sc.toDomain() }
             )
         }
 

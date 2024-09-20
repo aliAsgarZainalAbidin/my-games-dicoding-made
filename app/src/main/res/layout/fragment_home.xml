@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/white"
     tools:context=".home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -69,81 +69,65 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="-40dp"
-        android:fillViewport="true"
+        android:background="@drawable/bg_main_content"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardElevation="24dp">
+            android:layout_height="wrap_content"
+            android:paddingVertical="24dp"
+            android:background="@drawable/bg_main_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_home_title_content"
+                style="@style/BaseFont.TitleMedium"
+                android:paddingHorizontal="24dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="24dp">
+                android:layout_height="wrap_content"
+                android:text="Nikmati Setiap Petualangan"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mtv_home_title_content"
-                    style="@style/BaseFont.TitleMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nikmati Setiap Petualangan"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_home_subtitle_content"
+                style="@style/BaseFont.Caption"
+                android:paddingHorizontal="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Temukan game baru yang sesuai dengan gaya bermainmu"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/mtv_home_title_content" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mtv_home_subtitle_content"
-                    style="@style/BaseFont.Caption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Temukan game baru yang sesuai dengan gaya bermainmu"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/mtv_home_title_content" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_home_title_recomended"
+                style="@style/BaseFont.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Rekomendasi untuk Anda"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/mtv_home_subtitle_content" />
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipgroup_home_genres"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/mtv_home_subtitle_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mtv_home_title_recomended"
+                tools:listitem="@layout/item_game_content" />
 
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MMORPG" />
-
-                </com.google.android.material.chip.ChipGroup>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/mtv_home_title_recomended"
-                    style="@style/BaseFont.TitleMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Rekomendasi untuk Anda"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/chipgroup_home_genres" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/mtv_home_title_recomended"
-                    tools:listitem="@layout/item_game_content" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 

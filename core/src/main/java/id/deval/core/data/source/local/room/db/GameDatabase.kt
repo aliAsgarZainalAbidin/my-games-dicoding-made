@@ -7,7 +7,7 @@ import id.deval.core.data.source.local.entity.GameEntity
 import id.deval.core.data.source.local.room.converter.GameConverterHelper
 import id.deval.core.data.source.local.room.dao.GameDao
 
-@Database(entities = [GameEntity::class], version = 1, exportSchema = false)
+@Database(entities = [GameEntity::class], version = 4, exportSchema = false)
 @TypeConverters(GameConverterHelper::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract fun gameDao(): GameDao

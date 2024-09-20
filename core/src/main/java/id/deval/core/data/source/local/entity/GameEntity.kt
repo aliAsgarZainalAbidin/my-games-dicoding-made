@@ -15,7 +15,7 @@ data class GameEntity(
     val suggestionsCount: Int? = null,
 
     @ColumnInfo("rating")
-    val rating: Int? = null,
+    val rating: Double? = null,
 
     @ColumnInfo("metacritic")
     val metacritic: Int? = null,
@@ -58,7 +58,22 @@ data class GameEntity(
     val slug: String? = null,
 
     @ColumnInfo("released")
-    val released: String? = null
+    val released: String? = null,
+
+    @ColumnInfo("genre")
+    val genre: List<GenreEntity>? = null,
+
+    @ColumnInfo("shortScreenshots")
+    val shortScreenshots: List<ShortScreenshotsEntity>? = null
+)
+
+@Entity(tableName = "short_screenshots")
+data class ShortScreenshotsEntity(
+    @field:SerializedName("id")
+    val id : Int? = null,
+
+    @field:SerializedName("image")
+    val image : String? = null
 )
 
 @Entity(tableName = "platform_item")

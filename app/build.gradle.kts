@@ -74,6 +74,9 @@ dependencies {
     implementation(libs.lifecycle.livedata)
     implementation(libs.lifecycle.common)
 
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
+
     implementation(libs.androidx.material3)
     implementation(project(":core"))
 
