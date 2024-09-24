@@ -83,7 +83,8 @@ dependencies {
 
     implementation(libs.gson)
     implementation(libs.dagger.hilt)
-    implementation(libs.dagger.hilt.gradle)
+//    implementation(libs.dagger.hilt.gradle)
     kapt(libs.dagger.hilt.annotation)
-    kapt(libs.dagger.hilt.kapt)
+//    kapt(libs.dagger.hilt.kapt)
+    kapt(libs.hilt.compiler)
 }

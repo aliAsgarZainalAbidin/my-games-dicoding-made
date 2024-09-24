@@ -44,7 +44,9 @@ data class Game(
 
     val genre : List<Genre>? = null,
 
-    val shortScreenshots : List<ShortScreenshots>? = null
+    val shortScreenshots : List<ShortScreenshots>? = null,
+
+    var isFavorite : Boolean? = null
 ) : Parcelable
 
 

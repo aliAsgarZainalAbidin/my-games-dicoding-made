@@ -1,10 +1,12 @@
 package id.deval.core.utils
 
 import id.deval.core.data.source.local.entity.DetailGameEntity
+import id.deval.core.data.source.local.entity.FavoriteGameEntity
 import id.deval.core.data.source.local.entity.GameEntity
 import id.deval.core.data.source.remote.response.DetailGameResponse
 import id.deval.core.data.source.remote.response.GameResponse
 import id.deval.core.domain.model.DetailGame
+import id.deval.core.domain.model.FavoriteGame
 import id.deval.core.domain.model.Game
 
 object DataMappers {
@@ -57,7 +59,8 @@ object DataMappers {
                 released = it.released,
                 genre = it.genre?.map { genre -> genre.toDomain() },
                 platforms = it.platforms?.map { plt -> plt?.toDomain() },
-                shortScreenshots = it.shortScreenshots?.map { sc -> sc.toDomain() }
+                shortScreenshots = it.shortScreenshots?.map { sc -> sc.toDomain() },
+                isFavorite = it.isFavorite
             )
         }
 
@@ -170,6 +173,107 @@ object DataMappers {
         ratingsCount = input.ratingsCount,
         updated = input.updated,
         slug = input.slug,
-        released = input.released
+        released = input.released,
+        genre = input.genre?.map { it.toEntity() },
+        platforms = input.platforms?.map { it?.toEntity() },
+        shortScreenshots = input.shortScreenshots?.map { it.toEntity() },
+        isFavorite = input.isFavorite
     )
+
+    fun mapFavoriteEntityToDomain(input: List<FavoriteGameEntity>): List<FavoriteGame> {
+        val listFavorite = ArrayList<FavoriteGame>()
+        input.map {
+            val favorite = FavoriteGame(
+                id = it.id,
+                name = it.name,
+                backgroundImage = it.backgroundImage,
+                rating = it.rating,
+                released = it.released,
+                metacritic = it.metacritic,
+                isFavorite = it.isFavorite,
+                genre = it.genre?.map { genre -> genre.toDomain() },
+                platforms = it.platforms?.map { plt -> plt?.toDomain() },
+                shortScreenshots = it.shortScreenshots?.map { sc -> sc.toDomain() },
+                updated = it.updated,
+                slug = it.slug,
+                added = it.added,
+                suggestionsCount = it.suggestionsCount,
+                tba = it.tba,
+                esrbRating = it.esrbRating?.toDomain()
+            )
+            listFavorite.add(favorite)
+        }
+        return listFavorite
+    }
+
+    fun mapFavoriteDomainToEntity(input: List<FavoriteGame>): List<FavoriteGameEntity> {
+        val listFavorite = ArrayList<FavoriteGameEntity>()
+        input.map {
+            val favorite = FavoriteGameEntity(
+                id = it.id,
+                name = it.name,
+                backgroundImage = it.backgroundImage,
+                rating = it.rating,
+                released = it.released,
+                metacritic = it.metacritic,
+                isFavorite = it.isFavorite,
+                genre = it.genre?.map { genre -> genre.toEntity() },
+                platforms = it.platforms?.map { plt -> plt?.toEntity() },
+                shortScreenshots = it.shortScreenshots?.map { sc -> sc.toEntity() },
+                updated = it.updated,
+                slug = it.slug,
+                added = it.added,
+                suggestionsCount = it.suggestionsCount,
+                tba = it.tba,
+                esrbRating = it.esrbRating?.toEntity(),
+            )
+            listFavorite.add(favorite)
+        }
+        return listFavorite
+    }
+
+    fun favoriteGameEntityToDomain(input: FavoriteGameEntity) = FavoriteGame(
+        added = input.added,
+        suggestionsCount = input.suggestionsCount,
+        rating = input.rating,
+        metacritic = input.metacritic,
+        playtime = input.playtime,
+        platforms = input.platforms?.map { it?.toDomain() },
+        backgroundImage = input.backgroundImage,
+        tba = input.tba,
+        esrbRating = input.esrbRating?.toDomain(),
+        ratingTop = input.ratingTop,
+        updated = input.updated,
+        slug = input.slug,
+        released = input.released,
+        genre = input.genre?.map { it.toDomain() },
+        shortScreenshots = input.shortScreenshots?.map { it.toDomain() },
+        isFavorite = input.isFavorite,
+        name = input.name,
+        id = input.id,
+        ratingsCount = input.ratingsCount,
+    )
+
+    fun favoriteGameDomainToEntity(input : FavoriteGame) = FavoriteGameEntity(
+        added = input.added,
+        suggestionsCount = input.suggestionsCount,
+        rating = input.rating,
+        metacritic = input.metacritic,
+        playtime = input.playtime,
+        platforms = input.platforms?.map { it?.toEntity() },
+        backgroundImage = input.backgroundImage,
+        tba = input.tba,
+        esrbRating = input.esrbRating?.toEntity(),
+        ratingTop = input.ratingTop,
+        updated = input.updated,
+        slug = input.slug,
+        released = input.released,
+        genre = input.genre?.map { it.toEntity() },
+        shortScreenshots = input.shortScreenshots?.map { it.toEntity() },
+        isFavorite = input.isFavorite,
+        name = input.name,
+        id = input.id,
+        ratingsCount = input.ratingsCount
+    )
+
 }

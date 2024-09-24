@@ -2,10 +2,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="320dp"
+    android:layout_width="wrap_content"
     android:layout_height="248dp"
-    android:layout_marginStart="24dp"
     android:background="@color/white"
+    android:layout_gravity="center"
     android:elevation="4dp"
     app:cardCornerRadius="24dp">
 
@@ -15,7 +15,7 @@
 
         <ImageView
             android:id="@+id/iv_gamecontent_item"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +33,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="@dimen/game_content_horizontal"
             app:layout_constraintBottom_toBottomOf="@id/iv_gamecontent_item"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="MMORPG" />
 
 
@@ -44,19 +45,20 @@
             android:layout_marginHorizontal="@dimen/game_content_horizontal"
             android:layout_marginTop="8dp"
             android:textColor="@color/black_85"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_gamecontent_item"
             tools:text="MMORPG" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtv_gamecontent_name"
             style="@style/BaseFont.TitleLarge"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/game_content_horizontal"
+            android:layout_marginEnd="@dimen/game_content_horizontal"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/mtv_gamecontent_genre"
             app:layout_constraintTop_toBottomOf="@id/mtv_gamecontent_genre"
             tools:text="Albion Online" />
 

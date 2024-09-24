@@ -15,11 +15,16 @@
         android:name="id.deval.mygames.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="id.deval.favorite.ui.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite"/>
 
-    <include-dynamic
-        android:id="@+id/favorite_nav"
-        app:graphPackage="id.deval.favorite"
-        app:graphResName="favorite_nav"
-        app:moduleName="favorite" />
+<!--    <include-dynamic-->
+<!--        android:id="@+id/favoriteGraph"-->
+<!--        app:graphPackage="id.deval.favorite"-->
+<!--        app:graphResName="favorite_nav"-->
+<!--        app:moduleName="favorite" />-->
 
 </navigation>

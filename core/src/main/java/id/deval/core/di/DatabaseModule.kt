@@ -8,9 +8,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import id.deval.core.data.source.local.room.dao.DetailGameDao
+import id.deval.core.data.source.local.room.dao.FavoriteGameDao
 import id.deval.core.data.source.local.room.dao.GameDao
 import id.deval.core.data.source.local.room.dao.GenreDao
 import id.deval.core.data.source.local.room.db.DetailGameDatabase
+import id.deval.core.data.source.local.room.db.FavoriteGameDatabase
 import id.deval.core.data.source.local.room.db.GameDatabase
 import id.deval.core.data.source.local.room.db.GenreDatabase
 import id.deval.core.domain.model.DetailGame
@@ -60,4 +62,17 @@ class DatabaseModule {
 
     @Provides
     fun provideGenreDao(database: GenreDatabase): GenreDao = database.genreDao()
+
+    @Singleton
+    @Provides
+    fun provideFavoriteGameDatabase(@ApplicationContext context: Context) : FavoriteGameDatabase {
+        return Room.databaseBuilder(
+            context,
+            FavoriteGameDatabase::class.java,
+            "favoriteGame.db"
+        ).fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    fun provideFavoriteGameDao(database: FavoriteGameDatabase) : FavoriteGameDao = database.favoriteGameDao()
 }

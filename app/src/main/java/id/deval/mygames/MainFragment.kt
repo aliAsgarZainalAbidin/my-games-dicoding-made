@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
+import dagger.hilt.android.AndroidEntryPoint
 import id.deval.core.utils.safeNavigation
 import id.deval.mygames.databinding.FragmentMainBinding
 
@@ -47,8 +48,8 @@ class MainFragment : Fragment() {
 
         binding.botnavMainfragmentContainer.setOnNavigationItemSelectedListener { items ->
             when (items.itemId){
-                R.id.favorite_nav -> {
-                    installFavoriteFeature()
+                R.id.favoriteFragment -> {
+                    Utils.installFavoriteFeature(requireContext()) { moveToFavorite() }
                     true
                 }
                 R.id.homeFragment -> {
@@ -60,31 +61,9 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun installFavoriteFeature(){
-        val splitInstallManager = SplitInstallManagerFactory.create(requireContext())
-        val moduleFavorite = "favorite"
-        if (splitInstallManager.installedModules.contains(moduleFavorite)){
-            Log.d(TAG, "Favorite module already installed")
-            moveToFavorite()
-            return
-        } else {
-            val splitInstallRequest = SplitInstallRequest.newBuilder()
-                .addModule(moduleFavorite)
-                .build()
-
-            splitInstallManager.startInstall(splitInstallRequest)
-                .addOnSuccessListener {
-                    Log.d(TAG, "Success installing module")
-                    moveToFavorite()
-                }
-                .addOnFailureListener {
-                    Log.d(TAG, "Error installing module")
-                }
-        }
-    }
 
     private fun moveToFavorite(){
-        navController?.safeNavigation(R.id.favorite_nav)
+        navController?.safeNavigation(R.id.favoriteFragment)
     }
 
 }

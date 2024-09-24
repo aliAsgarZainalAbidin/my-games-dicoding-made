@@ -11,9 +11,6 @@ interface IGameRepository {
 
     fun getDetailGame(id : String) : Flow<Resource<DetailGame>>
 
-//    fun getFavoriteGame() : Flow<List<Game>>
-
     fun deleteGame(game: Game)
 
-    fun setFavoriteGame(game: Game, state : Boolean)
 }

@@ -66,8 +66,4 @@ class GameRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override fun setFavoriteGame(game: Game, state: Boolean) {
-        TODO("Not yet implemented")
-    }
-
 }

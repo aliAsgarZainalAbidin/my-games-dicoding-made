@@ -28,6 +28,8 @@ import id.deval.core.data.source.remote.response.RequirementsResponse
 import id.deval.core.data.source.remote.response.ShortScreenshotsResponse
 import id.deval.core.domain.model.AddedByStatus
 import id.deval.core.domain.model.EsrbRating
+import id.deval.core.domain.model.FavoriteGame
+import id.deval.core.domain.model.Game
 import id.deval.core.domain.model.Genre
 import id.deval.core.domain.model.MetacriticPlatformsItem
 import id.deval.core.domain.model.Platform
@@ -46,7 +48,7 @@ fun NavController.safeNavigation(
     try {
         navigate(id, args, navOptions)
     } catch (e : Throwable){
-        Log.d("safeNavigationFailed", "safeNavigation: $e")
+        Log.d("safeNavigationFailed", "safeNavigation: Graph ${this.graph} Error -> $e")
     }
 }
 
@@ -152,6 +154,29 @@ fun GenreEntity.toDomain() = Genre(
     slug = slug
 )
 
+fun Genre.toEntity() = GenreEntity(
+    name = name,
+    id = id,
+    slug = slug
+)
+
+fun PlatformsItem.toEntity() = PlatformsItemEntity(
+    requirements = requirements?.toEntity(),
+    releasedAt = releasedAt,
+    platform = platform?.toEntity()
+)
+
+fun Requirements.toEntity() = RequirementsEntity(
+    minimum = minimum,
+    recommended = recommended
+)
+
+fun Platform.toEntity() = PlatformEntity(
+    name = name,
+    id = id,
+    slug = slug
+)
+
 fun ShortScreenshotsResponse.toEntity() = ShortScreenshotsEntity(
     id = id,
     image = image
@@ -160,4 +185,36 @@ fun ShortScreenshotsResponse.toEntity() = ShortScreenshotsEntity(
 fun ShortScreenshotsEntity.toDomain() = ShortScreenshots(
     id = id,
     image = image
+)
+
+fun ShortScreenshots.toEntity() = ShortScreenshotsEntity(
+    id = id,
+    image = image
+)
+
+fun EsrbRating.toEntity() = EsrbRatingEntity(
+    name = name,
+    id = id,
+    slug = slug
+)
+
+fun FavoriteGame.toGame() = Game(
+    id = id,
+    name = name,
+    released = released,
+    backgroundImage = backgroundImage,
+    rating = rating,
+    genre = genre,
+    platforms = platforms,
+    shortScreenshots = shortScreenshots,
+    esrbRating = esrbRating,
+    suggestionsCount = suggestionsCount,
+    added = added,
+    metacritic = metacritic,
+    playtime = playtime,
+    tba = tba,
+    ratingsCount = ratingsCount,
+    updated = updated,
+    slug = slug,
+    isFavorite = true,
 )

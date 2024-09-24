@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 android {
     namespace = "id.deval.favorite"
@@ -34,6 +36,8 @@ android {
 
 dependencies {
     implementation(project(":app"))
+    implementation(project(":core"))
+
     implementation(libs.androidx.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -46,4 +50,23 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.dynamic.fragment)
+
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
+    androidTestImplementation(libs.room.testing)
+
+    implementation(libs.coroutines)
+    implementation(libs.coroutines.android)
+
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
+
+    implementation(libs.gson)
+
+    implementation(libs.dagger.hilt)
+//    implementation(libs.dagger.hilt.gradle)
+    kapt(libs.dagger.hilt.annotation)
+//    kapt(libs.dagger.hilt.kapt)
+    kapt(libs.hilt.compiler)
 }

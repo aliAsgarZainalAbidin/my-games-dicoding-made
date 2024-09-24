@@ -1,9 +1,11 @@
 package id.deval.core.data.source.local
 
 import id.deval.core.data.source.local.entity.DetailGameEntity
+import id.deval.core.data.source.local.entity.FavoriteGameEntity
 import id.deval.core.data.source.local.entity.GameEntity
 import id.deval.core.data.source.local.entity.GenreEntity
 import id.deval.core.data.source.local.room.dao.DetailGameDao
+import id.deval.core.data.source.local.room.dao.FavoriteGameDao
 import id.deval.core.data.source.local.room.dao.GameDao
 import id.deval.core.data.source.local.room.dao.GenreDao
 import javax.inject.Inject
@@ -13,6 +15,7 @@ import javax.inject.Singleton
 class LocalDataSource @Inject constructor(
     private val gameDao: GameDao,
     private val genreDao: GenreDao,
+    private val favoriteGameDao: FavoriteGameDao,
     private val detailGameDao: DetailGameDao
 ) {
 
@@ -44,4 +47,9 @@ class LocalDataSource @Inject constructor(
 
     fun insertDetailGame(detailGameEntity: DetailGameEntity) = detailGameDao.insertDetailGame(detailGameEntity)
 
+    fun getAllFavoriteGame() = favoriteGameDao.getAllFavoriteGame()
+
+    fun getFavoriteGameById(id: String) = favoriteGameDao.getFavoriteGameById(id)
+
+    fun deleteFavoriteGame(favoriteGame: FavoriteGameEntity) = favoriteGameDao.deleteFavoriteGame(favoriteGame)
 }

@@ -19,6 +19,7 @@ retrofit-logging = "4.9.0"
 coroutines = "1.4.2"
 gson = "2.10.1"
 hilt-version = "2.52"
+androidx-hilt = "1.2.0"
 lifecycle-version = "2.8.5"
 material-3 = "1.3.0"
 glide-version = "4.13.0"
@@ -63,6 +64,7 @@ dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref 
 dagger-hilt-kapt = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-version"}
 dagger-hilt-annotation = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt-version"}
 dagger-hilt-gradle = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt-version"}
+hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref="androidx-hilt"}
 
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide-version"}
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide-version"}

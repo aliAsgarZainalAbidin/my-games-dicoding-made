@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/background_searchbar" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/ib_detail_back"
             android:layout_width="42dp"
             android:layout_height="42dp"
@@ -32,17 +32,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/ib_detail_favorite"
+            style="@style/CheckButton"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:layout_margin="@dimen/screen_detail_dimen"
             android:background="@drawable/circle_button_shape"
-            android:button="@drawable/favorite_button"
             android:checked="false"
             android:scaleType="centerInside"
+            app:buttonCompat="@drawable/favorite_button"
+            app:buttonTint="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:useMaterialThemeColors="true" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mtv_detail_rating"
@@ -102,10 +105,10 @@
             android:id="@+id/rv_detail_images"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
-            tools:listitem="@layout/item_preview_game"
-            app:layout_constraintTop_toBottomOf="@id/mtv_detail_images_title" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/mtv_detail_images_title"
+            tools:listitem="@layout/item_preview_game" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
