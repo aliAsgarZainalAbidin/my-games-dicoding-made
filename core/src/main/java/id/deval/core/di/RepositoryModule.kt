@@ -2,11 +2,10 @@ package id.deval.core.di
 
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import id.deval.core.data.FavoriteGameRepository
-import id.deval.core.data.GameRepository
+import id.deval.core.data.source.repo.FavoriteGameRepository
+import id.deval.core.data.source.repo.GameRepository
 import id.deval.core.domain.repository.IFavoriteGameRepository
 import id.deval.core.domain.repository.IGameRepository
 

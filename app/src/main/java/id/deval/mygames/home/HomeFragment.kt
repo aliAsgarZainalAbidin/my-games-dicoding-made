@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.google.android.material.sidesheet.SideSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import id.deval.core.data.Resource
 import id.deval.core.ui.GameAdapter
@@ -43,16 +44,21 @@ class HomeFragment : Fragment() {
 
         val gameAdapter = GameAdapter()
         gameAdapter.onItemClick = { game ->
-            val navHostFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.fcv_mainactivity_container) as NavHostFragment?
+            val navHostFragment =
+                requireActivity().supportFragmentManager.findFragmentById(R.id.fcv_mainactivity_container) as NavHostFragment?
             val navControllerActivity = navHostFragment?.navController
 
             val gameDetail = Bundle()
             gameDetail.putParcelable(DetailFragment.EXTRA_DATA, game)
             navControllerActivity?.safeNavigation(R.id.detailFragment, gameDetail)
         }
+
         homeViewModel.games.observe(viewLifecycleOwner) { games ->
             when (games) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+
+                }
+
                 is Resource.Success -> {
                     games.data?.let { gameAdapter.setGames(it) }
                 }
@@ -69,5 +75,18 @@ class HomeFragment : Fragment() {
             adapter = gameAdapter
         }
 
+        binding.ibHomeSettings.setOnClickListener {
+            showSideSheetDialog()
+        }
+    }
+
+    private fun showSideSheetDialog() {
+        val sideSheetDialog = SideSheetDialog(requireContext())
+        val inflater = layoutInflater.inflate(R.layout.settings_side_sheet_dialog, null)
+        val genreChipGroup = inflater.findViewById<ChipGroup>(R.id.cg_sidesheet_genre)
+
+
+        sideSheetDialog.setContentView(inflater)
+        sideSheetDialog.show()
     }
 }

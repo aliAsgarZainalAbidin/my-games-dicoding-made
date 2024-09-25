@@ -13,7 +13,7 @@
         android:name=".di.MyGamesApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyGames"
+        android:theme="@style/Base.Theme.MyGames"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

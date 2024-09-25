@@ -1,13 +1,18 @@
 package id.deval.core.utils
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.IdRes
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import id.deval.core.data.source.local.entity.AddedByStatusEntity
 import id.deval.core.data.source.local.entity.EsrbRatingEntity
+import id.deval.core.data.source.local.entity.FavoriteGameEntity
 import id.deval.core.data.source.local.entity.GenreEntity
 import id.deval.core.data.source.local.entity.MetacriticPlatformsItemEntity
 import id.deval.core.data.source.local.entity.PlatformEntity
@@ -38,6 +43,10 @@ import id.deval.core.domain.model.Ratings
 import id.deval.core.domain.model.Reactions
 import id.deval.core.domain.model.Requirements
 import id.deval.core.domain.model.ShortScreenshots
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.cancellation.CancellationException
 
 
 fun NavController.safeNavigation(
@@ -59,6 +68,71 @@ fun NavController.safeNavigation(
         navigate(deepLink)
     } catch (e : Throwable){
         Log.d("safeNavigationFailed", "safeNavigation: Deeplink $e")
+    }
+}
+
+
+fun CoroutineScope.launchCatchError(
+    context: CoroutineContext = coroutineContext,
+    block: suspend CoroutineScope.() -> Unit,
+    onError: suspend (Throwable) -> Unit
+) =
+    launch(context) {
+        try {
+            block()
+        } catch (t: Throwable) {
+            if (t is CancellationException) throw t
+            else {
+                try {
+                    onError(t)
+                } catch (e: Throwable) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+fun CoroutineScope.launchCatchError(
+    block: suspend CoroutineScope.() -> Unit,
+    onError: suspend (Throwable) -> Unit
+) =
+    launch {
+        try {
+            block()
+        } catch (t: Throwable) {
+            if (t is CancellationException) throw t
+            else {
+                try {
+                    onError(t)
+                } catch (e: Throwable) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+fun Handler.safePostDelayed(runnable: Runnable, delay: Long) {
+    postDelayed({
+        try {
+            runnable.run()
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+    }, delay)
+}
+
+fun <T> LiveData<T>.nonNullObserve(owner: LifecycleOwner, observe: (t: T) -> Unit) {
+    this.observe(owner) {
+        it?.let(observe)
+    }
+}
+
+
+fun <T> ActivityResultLauncher<T>.safeLaunch(input : T){
+    try {
+        this.launch(input)
+    } catch (e:Exception){
+        e.printStackTrace()
     }
 }
 
@@ -217,4 +291,24 @@ fun FavoriteGame.toGame() = Game(
     updated = updated,
     slug = slug,
     isFavorite = true,
+)
+
+fun Game.toFavoriteGameEntity() = FavoriteGameEntity(
+    id = id,
+    name = name,
+    released = released,
+    backgroundImage = backgroundImage,
+    rating = rating,
+    genre = genre?.map { it.toEntity() },
+    platforms = platforms?.map { it?.toEntity() },
+    shortScreenshots = shortScreenshots?.map { it.toEntity() },
+    esrbRating = esrbRating?.toEntity(),
+    suggestionsCount = suggestionsCount,
+    added = added,
+    metacritic = metacritic,
+    playtime = playtime,
+    tba = tba,
+    ratingsCount = ratingsCount,
+    updated = updated,
+    slug = slug,
 )

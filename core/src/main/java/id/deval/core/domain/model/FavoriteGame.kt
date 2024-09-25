@@ -40,6 +40,4 @@ data class FavoriteGame(
     val genre: List<Genre>? = null,
 
     val shortScreenshots: List<ShortScreenshots>? = null,
-
-    var isFavorite: Boolean? = null
 )

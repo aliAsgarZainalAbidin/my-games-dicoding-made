@@ -65,7 +65,4 @@ data class FavoriteGameEntity(
 
     @ColumnInfo("shortScreenshots")
     val shortScreenshots: List<ShortScreenshotsEntity>? = null,
-
-    @ColumnInfo("isFavorite")
-    var isFavorite: Boolean? = null
 )

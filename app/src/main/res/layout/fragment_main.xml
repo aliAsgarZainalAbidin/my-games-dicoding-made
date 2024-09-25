@@ -18,6 +18,9 @@
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:backgroundTint="@color/gunmetal_gray"
+        app:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/botnav_menu" />
 

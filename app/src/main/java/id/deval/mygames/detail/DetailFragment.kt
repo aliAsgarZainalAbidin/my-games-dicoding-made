@@ -1,7 +1,6 @@
 package id.deval.mygames.detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,18 +8,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import id.deval.core.domain.model.Game
 import id.deval.core.ui.PreviewGameAdapter
-import id.deval.mygames.R
-import id.deval.mygames.Utils
+import id.deval.mygames.utils.Utils
 import id.deval.mygames.databinding.FragmentDetailBinding
 
+
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
+
+    private val detailViewModel: DetailViewModel by viewModels()
 
     companion object {
         const val TAG = "DetailFragment"
@@ -63,7 +65,21 @@ class DetailFragment : Fragment() {
 
             ibDetailFavorite.setOnClickListener {
                 Utils.installFavoriteFeature(requireContext()) {
+                    if (ibDetailFavorite.isChecked) {
+                        game?.let {
+                            detailViewModel.setFavoriteGame(game)
+                        }
+                    } else {
+                        game?.let {
+                            detailViewModel.deleteFromFavorite(game)
+                        }
+                    }
                 }
+            }
+
+            detailViewModel.getAllFavoriteGame().observe(viewLifecycleOwner) {
+                val favGame = it.data?.find { favGame -> game?.id == favGame.id }
+                ibDetailFavorite.isChecked = favGame != null
             }
         }
     }

@@ -5,5 +5,5 @@ import id.deval.core.domain.model.Game
 import kotlinx.coroutines.flow.Flow
 
 interface GameUseCase {
-    fun getAllGame(): Flow<Resource<List<Game>>>
+    fun getAllGame(genres : ArrayList<String>): Flow<Resource<List<Game>>>
 }

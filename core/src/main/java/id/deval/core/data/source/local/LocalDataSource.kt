@@ -52,4 +52,6 @@ class LocalDataSource @Inject constructor(
     fun getFavoriteGameById(id: String) = favoriteGameDao.getFavoriteGameById(id)
 
     fun deleteFavoriteGame(favoriteGame: FavoriteGameEntity) = favoriteGameDao.deleteFavoriteGame(favoriteGame)
+
+    fun addFavoriteGame(favoriteGame : FavoriteGameEntity) = favoriteGameDao.insertFavoriteGame(favoriteGame)
 }

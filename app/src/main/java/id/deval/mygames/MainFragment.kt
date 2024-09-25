@@ -1,24 +1,16 @@
 package id.deval.mygames
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
-import androidx.fragment.app.findFragment
 import androidx.navigation.NavController
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
-import com.google.android.play.core.splitinstall.SplitInstallRequest
-import dagger.hilt.android.AndroidEntryPoint
 import id.deval.core.utils.safeNavigation
 import id.deval.mygames.databinding.FragmentMainBinding
+import id.deval.mygames.utils.Utils
 
 class MainFragment : Fragment() {
 

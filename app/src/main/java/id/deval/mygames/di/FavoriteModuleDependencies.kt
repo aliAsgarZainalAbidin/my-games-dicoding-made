@@ -8,6 +8,5 @@ import id.deval.core.domain.usecase.FavoriteGameUsecase
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 interface FavoriteModuleDependencies {
-
     fun favoriteUsecase() : FavoriteGameUsecase
 }

@@ -1,4 +1,4 @@
-package id.deval.mygames
+package id.deval.mygames.utils
 
 import android.content.Context
 import android.util.Log

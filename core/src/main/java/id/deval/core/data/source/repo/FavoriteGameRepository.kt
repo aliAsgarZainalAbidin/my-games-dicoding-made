@@ -1,9 +1,13 @@
-package id.deval.core.data
+package id.deval.core.data.source.repo
 
+import id.deval.core.data.LocalBoundSource
+import id.deval.core.data.Resource
 import id.deval.core.data.source.local.LocalDataSource
 import id.deval.core.domain.model.FavoriteGame
+import id.deval.core.domain.model.Game
 import id.deval.core.domain.repository.IFavoriteGameRepository
 import id.deval.core.utils.DataMappers
+import id.deval.core.utils.toFavoriteGameEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -31,9 +35,12 @@ class FavoriteGameRepository @Inject constructor(
 
         }.asFlow()
 
-    override fun deleteFavoriteGame(favoriteGame: FavoriteGame) {
-        val favoriteGameEntity = DataMappers.favoriteGameDomainToEntity(favoriteGame)
-        localDataSource.deleteFavoriteGame(favoriteGameEntity)
+    override fun deleteFavoriteGame(game: Game) {
+        localDataSource.deleteFavoriteGame(game.toFavoriteGameEntity())
+    }
+
+    override fun setFavoriteGame(game: Game) {
+        localDataSource.addFavoriteGame(game.toFavoriteGameEntity())
     }
 
 }

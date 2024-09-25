@@ -1,5 +1,7 @@
-package id.deval.core.data
+package id.deval.core.data.source.repo
 
+import id.deval.core.data.NetworkBoundSource
+import id.deval.core.data.Resource
 import id.deval.core.data.source.local.LocalDataSource
 import id.deval.core.data.source.remote.RemoteDataSource
 import id.deval.core.data.source.remote.network.ApiResponse
@@ -19,7 +21,7 @@ class GameRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
 ) : IGameRepository {
-    override fun getAllGames(): Flow<Resource<List<Game>>> =
+    override fun getAllGames(genre: ArrayList<String>): Flow<Resource<List<Game>>> =
         object : NetworkBoundSource<List<Game>, List<GameResponse>>() {
             override fun loadFromDB(): Flow<List<Game>> {
                 return localDataSource.getAllGames().map {

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.deval.core.domain.model.FavoriteGame
+import id.deval.core.domain.model.Game
 import id.deval.core.domain.usecase.FavoriteGameUsecase
 import javax.inject.Inject
 
@@ -16,5 +17,5 @@ class FavoriteGameViewModel @Inject constructor(
 
     fun getFavoriteGameById(id : String) = favoriteGameUsecase.getFavoriteGameById(id).asLiveData()
 
-    fun deleteFavoriteGame(favoriteGame: FavoriteGame) = favoriteGameUsecase.deleteFavoriteGame(favoriteGame)
+    fun deleteFavoriteGame(game: Game) = favoriteGameUsecase.deleteFavoriteGame(game)
 }
