@@ -85,7 +85,6 @@ class HomeFragment : Fragment() {
         val inflater = layoutInflater.inflate(R.layout.settings_side_sheet_dialog, null)
         val genreChipGroup = inflater.findViewById<ChipGroup>(R.id.cg_sidesheet_genre)
 
-
         sideSheetDialog.setContentView(inflater)
         sideSheetDialog.show()
     }

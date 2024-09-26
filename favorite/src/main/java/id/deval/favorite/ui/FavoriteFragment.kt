@@ -7,14 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.EntryPointAccessors
 import id.deval.core.data.Resource
 import id.deval.core.ui.GameAdapter
+import id.deval.core.utils.safeNavigation
 import id.deval.core.utils.toGame
 import id.deval.favorite.databinding.FragmentFavoriteBinding
 import id.deval.favorite.di.DaggerFavoriteComponent
 import id.deval.favorite.utils.ViewModelFactory
+import id.deval.mygames.R
+import id.deval.mygames.detail.DetailFragment
 import id.deval.mygames.di.FavoriteModuleDependencies
 import javax.inject.Inject
 
@@ -51,6 +55,16 @@ class FavoriteFragment : Fragment() {
                 }
                 is Resource.Error -> {}
             }
+        }
+
+        gameAdapter.onItemClick = { game ->
+            val navHostFragment =
+                requireActivity().supportFragmentManager.findFragmentById(R.id.fcv_mainactivity_container) as NavHostFragment?
+            val navControllerActivity = navHostFragment?.navController
+
+            val gameDetail = Bundle()
+            gameDetail.putParcelable(DetailFragment.EXTRA_DATA, game)
+            navControllerActivity?.safeNavigation(R.id.detailFragment, gameDetail)
         }
 
         binding.rvFavoriteGame.adapter = gameAdapter
