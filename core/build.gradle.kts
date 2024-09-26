@@ -38,11 +38,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "API_KEY", apiKey)
+            buildConfigField("String", "API_KEY", "\"d6f25f3aa6ef4c93bdc55630fccd96ce\"")
         }
 
         debug {
-            buildConfigField("String", "API_KEY", apiKey)
+            buildConfigField("String", "API_KEY", "\"d6f25f3aa6ef4c93bdc55630fccd96ce\"")
         }
     }
     compileOptions {
