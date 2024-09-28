@@ -5,11 +5,11 @@ jobs:
   test-java:
     docker:
       - image: cimg/openjdk:17.0
+    environment:
+      ANDROID_HOME: /opt/android/sdk  # Menentukan lokasi Android SDK
+      ANDROID_SDK_ROOT: /opt/android/sdk  # Sebagai tambahan, menambahkan ANDROID_SDK_ROOT
     steps:
       - checkout
-      - run:
-          name: Debug SDK location
-          command: ls -la $ANDROID_HOME
       - run:
           name: Berikan izin gradlew
           command: chmod +x ./gradlew
