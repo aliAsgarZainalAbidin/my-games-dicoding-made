@@ -8,6 +8,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Debug SDK location
+          command: ls -la $ANDROID_HOME
+      - run:
           name: Berikan izin gradlew
           command: chmod +x ./gradlew
       - run:
