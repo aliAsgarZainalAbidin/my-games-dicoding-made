@@ -59,7 +59,6 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.dynamic.fragment)
 
-    testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.navigation.testing)
@@ -81,4 +80,12 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(project(":core"))
 
+    //MOCK JUnit
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.test)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mock.framework)
+    testImplementation(libs.androidx.arch)
+    testImplementation(libs.kotlin.coroutines.test)
 }

@@ -59,7 +59,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
@@ -87,4 +86,11 @@ dependencies {
     kapt(libs.dagger.hilt.annotation)
 //    kapt(libs.dagger.hilt.kapt)
     kapt(libs.hilt.compiler)
+
+    //MOCK JUnit
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.test)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mock.framework)
 }
