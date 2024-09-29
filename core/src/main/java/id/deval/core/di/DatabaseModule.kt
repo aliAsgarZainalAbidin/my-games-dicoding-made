@@ -15,10 +15,8 @@ import id.deval.core.data.source.local.room.db.DetailGameDatabase
 import id.deval.core.data.source.local.room.db.FavoriteGameDatabase
 import id.deval.core.data.source.local.room.db.GameDatabase
 import id.deval.core.data.source.local.room.db.GenreDatabase
-import id.deval.core.domain.model.DetailGame
-import kotlinx.parcelize.Parcelize
+import id.deval.core.utils.SecureRoomDatabase
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -30,7 +28,10 @@ class DatabaseModule {
             context,
             GameDatabase::class.java,
             "Games.db"
-        ).fallbackToDestructiveMigration().build()
+        )
+            .fallbackToDestructiveMigration()
+            .openHelperFactory(SecureRoomDatabase.encryptedRoomDatabase())
+            .build()
     }
 
     @Provides
@@ -47,7 +48,9 @@ class DatabaseModule {
             context,
             DetailGameDatabase::class.java,
             "DetailGame.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(SecureRoomDatabase.encryptedRoomDatabase())
+            .build()
     }
 
     @Singleton
@@ -65,14 +68,17 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideFavoriteGameDatabase(@ApplicationContext context: Context) : FavoriteGameDatabase {
+    fun provideFavoriteGameDatabase(@ApplicationContext context: Context): FavoriteGameDatabase {
         return Room.databaseBuilder(
             context,
             FavoriteGameDatabase::class.java,
             "favoriteGame.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(SecureRoomDatabase.encryptedRoomDatabase())
+            .build()
     }
 
     @Provides
-    fun provideFavoriteGameDao(database: FavoriteGameDatabase) : FavoriteGameDao = database.favoriteGameDao()
+    fun provideFavoriteGameDao(database: FavoriteGameDatabase): FavoriteGameDao =
+        database.favoriteGameDao()
 }

@@ -7,7 +7,7 @@ import id.deval.core.data.source.local.entity.FavoriteGameEntity
 import id.deval.core.data.source.local.room.converter.GameConverterHelper
 import id.deval.core.data.source.local.room.dao.FavoriteGameDao
 
-@Database(entities = [FavoriteGameEntity::class], version = 3, exportSchema = false)
+@Database(entities = [FavoriteGameEntity::class], version = 4, exportSchema = false)
 @TypeConverters(GameConverterHelper::class)
 abstract class FavoriteGameDatabase : RoomDatabase() {
     abstract fun favoriteGameDao() : FavoriteGameDao
