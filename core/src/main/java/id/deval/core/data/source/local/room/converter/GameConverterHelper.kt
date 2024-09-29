@@ -27,24 +27,25 @@ class GameConverterHelper {
     fun toListString(value: String) =
         Gson().fromJson<List<String>>(value, object : TypeToken<List<String>>() {}.type)
 
-    @TypeConverter
-    fun fromArrayPlatformsItemEntity(value: List<PlatformsItemEntity>?) = Gson().toJson(value)
 
     @TypeConverter
-    fun toArrayPlatformsItemEntity(value: String) = Gson().fromJson<List<PlatformsItemEntity>>(
+    fun fromArrayPlatformsItemEntityOrNull(value: List<PlatformsItemEntity?>?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun toArrayPlatformsItemEntityOrNull(value: String) = Gson().fromJson<List<PlatformsItemEntity?>>(
         value,
-        object : TypeToken<List<PlatformsItemEntity>>() {}.type
+        object : TypeToken<List<PlatformsItemEntity?>>() {}.type
     )
 
     @TypeConverter
-    fun fromListMetacriticPlatformsItemEntity(value: List<MetacriticPlatformsItemEntity>?) =
+    fun fromListMetacriticPlatformsItemEntityOrNull(value: List<MetacriticPlatformsItemEntity?>?) =
         Gson().toJson(value)
 
     @TypeConverter
-    fun toListMetacriticPlatformsItemEntity(value: String) =
+    fun toListMetacriticPlatformsItemEntityOrNull(value: String) =
         Gson().fromJson<List<MetacriticPlatformsItemEntity>>(
             value,
-            object : TypeToken<List<MetacriticPlatformsItemEntity>>() {}.type
+            object : TypeToken<List<MetacriticPlatformsItemEntity?>>() {}.type
         )
 
     @TypeConverter

@@ -1,5 +1,6 @@
 package id.deval.core.ui
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -42,6 +43,7 @@ class PreviewGameAdapter : RecyclerView.Adapter<PreviewGameAdapter.PreviewGameVi
 
     override fun getItemCount(): Int = listData.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<String?>?) {
         if (newListData == null) return
         listData.clear()

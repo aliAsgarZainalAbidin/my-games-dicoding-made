@@ -1,5 +1,6 @@
 package id.deval.core.ui
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -66,6 +67,7 @@ class GameAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setGames(games: List<Game>) {
         this.games.clear()
         this.games.addAll(games)

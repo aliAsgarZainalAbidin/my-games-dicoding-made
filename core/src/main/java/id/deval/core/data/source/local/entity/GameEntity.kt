@@ -3,7 +3,9 @@ package id.deval.core.data.source.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import id.deval.core.data.source.local.room.converter.GameConverterHelper
 
 
 @Entity(tableName = "games")
@@ -24,7 +26,7 @@ data class GameEntity(
     val playtime: Int? = null,
 
     @ColumnInfo("platforms")
-    val platforms: List<PlatformsItemEntity?>? = null,
+    @TypeConverters(GameConverterHelper::class) val platforms: List<PlatformsItemEntity?>? = null,
 
     @ColumnInfo("backgroundImage")
     val backgroundImage: String? = null,

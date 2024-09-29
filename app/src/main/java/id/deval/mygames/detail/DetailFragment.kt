@@ -43,8 +43,8 @@ class DetailFragment : Fragment() {
         with(binding) {
             mtvDetailTitle.text = game?.name
             mtvDetailReleasedate.text = game?.released
-            mtvDetailRating.text = "Ratings : ${game?.rating}"
-            mtvDetailTotalRating.text = "Total Rating : ${game?.ratingsCount}"
+            mtvDetailRating.text = String.format("Rating : %s", game?.rating)
+            mtvDetailTotalRating.text = String.format("Total Rating : %s", game?.ratingsCount)
 
             val previewAdapter = PreviewGameAdapter()
             val urls = game?.shortScreenshots?.map { it.image }?.toList()

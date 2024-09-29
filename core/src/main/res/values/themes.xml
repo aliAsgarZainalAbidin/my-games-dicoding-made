@@ -5,9 +5,9 @@
         <item name="colorPrimary">@color/jet_black</item>
         <item name="colorAccent">@color/electric_blue</item>
         <item name="colorSecondary">@color/silver</item>
+        <item name="background">@color/white</item>
     </style>
 
-    <style name="Theme.MyGames" parent="Base.Theme.MyGames" />
 
     <style name="Theme.Material3.DayNight.NoActionBar.MyGames" parent="Theme.Material3.DayNight.NoActionBar" />
 
@@ -23,11 +23,6 @@
         <item name="fontFamily">@font/roboto</item>
     </style>
 
-    <style name="BaseFont.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textColor">@color/silver</item>
-        <item name="fontFamily">@font/roboto</item>
-    </style>
 
     <style name="BaseFont.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:fontFamily">@font/roboto</item>

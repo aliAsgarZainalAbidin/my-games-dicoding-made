@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -65,9 +65,9 @@ dependencies {
 
     implementation(libs.dagger.hilt)
 //    implementation(libs.dagger.hilt.gradle)
-    kapt(libs.dagger.hilt.annotation)
-//    kapt(libs.dagger.hilt.kapt)
-    kapt(libs.hilt.compiler)
+    ksp(libs.dagger.hilt.annotation)
+//    ksp(libs.dagger.hilt.kapt)
+    ksp(libs.hilt.compiler)
 
     implementation(libs.lifecycle.runtime)
     implementation(libs.lifecycle.viewmodel)
@@ -75,7 +75,7 @@ dependencies {
     implementation(libs.lifecycle.common)
 
     implementation(libs.glide)
-    kapt(libs.glide.compiler)
+    ksp(libs.glide.compiler)
 
     implementation(libs.androidx.material3)
     implementation(project(":core"))

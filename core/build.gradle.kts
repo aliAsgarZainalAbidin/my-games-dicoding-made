@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.parcelize)
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 
@@ -66,7 +66,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
 
     implementation(libs.room.runtime)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     implementation(libs.room.ktx)
     androidTestImplementation(libs.room.testing)
 
@@ -78,14 +78,14 @@ dependencies {
     implementation(libs.coroutines.android)
 
     implementation(libs.glide)
-    kapt(libs.glide.compiler)
+    ksp(libs.glide.compiler)
 
     implementation(libs.gson)
     implementation(libs.dagger.hilt)
 //    implementation(libs.dagger.hilt.gradle)
-    kapt(libs.dagger.hilt.annotation)
-//    kapt(libs.dagger.hilt.kapt)
-    kapt(libs.hilt.compiler)
+    ksp(libs.dagger.hilt.annotation)
+//    ksp(libs.dagger.hilt.kapt)
+    ksp(libs.hilt.compiler)
 
     //MOCK JUnit
     testImplementation(libs.junit)

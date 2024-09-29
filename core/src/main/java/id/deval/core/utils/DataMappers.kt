@@ -31,7 +31,7 @@ object DataMappers {
                 slug = it.slug,
                 released = it.released,
                 genre = it.genres?.map { genre -> genre.toEntity() },
-                platforms = it.platforms?.map { plt -> plt?.toEntity() },
+                platforms = it.platforms?.map { plt -> plt.toEntity() },
                 shortScreenshots = it.shortScreenshots?.map { sc -> sc.toEntity() }
             )
             listGame.add(game)

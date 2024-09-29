@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="background">Background</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="welcome_title">Temukan game menarik untuk \nkamu mainkan</string>
+    <string name="welcome_subtitle">Eksplorasi game terbaru yang sesuai dengan selera kamu</string>
+    <string name="detail_title">Nikmati Setiap Petualangan</string>
+    <string name="detail_subtitle">Temukan game baru yang sesuai dengan gaya bermainmu</string>
+    <string name="rekomendasi">Rekomendasi untuk Anda</string>
+    <string name="theme">Theme</string>
+    <string name="dark">Dark</string>
+</resources>

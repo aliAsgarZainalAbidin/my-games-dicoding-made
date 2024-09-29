@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 android {
@@ -52,7 +52,7 @@ dependencies {
     implementation(libs.androidx.navigation.dynamic.fragment)
 
     implementation(libs.room.runtime)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     implementation(libs.room.ktx)
     androidTestImplementation(libs.room.testing)
 
@@ -60,13 +60,13 @@ dependencies {
     implementation(libs.coroutines.android)
 
     implementation(libs.glide)
-    kapt(libs.glide.compiler)
+    ksp(libs.glide.compiler)
 
     implementation(libs.gson)
 
     implementation(libs.dagger.hilt)
 //    implementation(libs.dagger.hilt.gradle)
-    kapt(libs.dagger.hilt.annotation)
-//    kapt(libs.dagger.hilt.kapt)
-    kapt(libs.hilt.compiler)
+    ksp(libs.dagger.hilt.annotation)
+//    ksp(libs.dagger.hilt.kapt)
+    ksp(libs.hilt.compiler)
 }

@@ -20,7 +20,7 @@ data class GameResponse(
 	val playtime: Int? = null,
 
 	@field:SerializedName("platforms")
-	val platforms: List<PlatformsItemResponse?>? = null,
+	val platforms: List<PlatformsItemResponse>? = null,
 
 	@field:SerializedName("background_image")
 	val backgroundImage: String? = null,

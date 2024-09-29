@@ -4,11 +4,11 @@
         android:id="@id/homeFragment"
         android:icon="@drawable/outline_home_24"
         android:enabled="true"
-        android:title="Home"/>
+        android:title="@string/home"/>
 
     <item
         android:id="@id/favoriteFragment"
         android:icon="@drawable/outline_favorite_border_24"
         android:enabled="true"
-        android:title="Favorite"/>
+        android:title="@string/favorite"/>
 </menu>
