@@ -2,14 +2,34 @@
 # Stacks detected: deps:java:.,tool:gradle:
 version: 2.1
 
-orbs:
-  android: circleci/android@0.2.1
+#orbs:
+#  android: circleci/android@0.2.1
+#  environment:
+#    JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64  # Set JAVA_HOME ke Java 17
+#    GRADLE_OPTS: '-Dorg.gradle.jvmargs=-Xmx4096m -Dorg.gradle.daemon=false'
+executors:
+  android-executor:
+    docker:
+      - image: circleci/android:api-30  # Ganti image ini sesuai kebutuhan
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64  # Set JAVA_HOME ke Java 17
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs=-Xmx4096m -Dorg.gradle.daemon=false'
 
 jobs:
   build:
-    executor: android/android
+    executor: android-executor
     steps:
       - checkout
+      - run:
+          name: Setup Java 17
+          command: |
+            sudo apt-get update
+            sudo apt-get install openjdk-17-jdk
+            sudo update-alternatives --config java
+            java -version  # Verifikasi versi Java
+      - run:
+          name: Build
+          command: ./gradlew assembleDebug
       - restore_cache:
           key: android-orb-v1-
       - run:
