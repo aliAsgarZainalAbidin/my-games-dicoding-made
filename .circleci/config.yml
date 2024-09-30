@@ -9,16 +9,13 @@ jobs:
       - image: circleci/android:api-30
     steps:
       - checkout
-      - run:
+      - run: # Remove the restore-cache step
           name: Run Unit Tests
           command: ./gradlew testDebug
 
   android-test:
     docker:
-      - image: circleci/android:api-<< api-level >>  # Use the parameter for the API level
-    parameters:
-      api-level:
-        type: integer
+      - image: circleci/android:api-30
     steps:
       - checkout
       - run:
@@ -43,22 +40,11 @@ workflows:
   test-and-build:
     jobs:
       - unit-test
-      - android-test:
-          name: android-test-30  # Explicitly name the job for this API level
-          api-level: 30  # Pass the required parameter
-          filters:
-            branches:
-              ignore: main
-      - android-test:
-          name: android-test-30-main  # Explicitly name the job for main branch
-          api-level: 30  # Pass the required parameter
-          filters:
-            branches:
-              only: main
+      - android-test # Commits to any branch - skip matrix of devices
       - release-build:
           requires:
             - unit-test
-            - android-test
+            - android-test-all
           filters:
             branches:
               only: main  # Commits to main branch
