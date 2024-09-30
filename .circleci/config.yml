@@ -19,9 +19,9 @@ jobs:
       resource-class: xlarge
     steps:
       - checkout
-      - android/run-tests: # Use the correct command for running tests
-          test-command: ./gradlew connectedDebugAndroidTest
-          system-image: system-images;android-30;google_apis;x86
+      - run:
+          name: Run Instrumented Tests
+          command: ./gradlew connectedAndroidTest
 
   release-build:
     executor:
