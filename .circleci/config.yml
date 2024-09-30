@@ -10,10 +10,9 @@ jobs:
       tag: 2022.08.1
     steps:
       - checkout
-      - android/restore-gradle-cache
-      - android/run-tests:  # Correct command to run unit tests
-          test-command: ./gradlew testDebug
-      - android/save-gradle-cache
+      - run: # Remove the restore-cache step
+          name: Run Unit Tests
+          command: ./gradlew testDebug
 
   android-test:
     executor:
