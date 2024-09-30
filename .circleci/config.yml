@@ -32,6 +32,7 @@ jobs:
       - run:
           name: Install Google Cloud SDK
           command: |
+            sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C0BA5CE6DC6315A3
             sudo apt install -y google-cloud-sdk
       - run:
           name: Build
