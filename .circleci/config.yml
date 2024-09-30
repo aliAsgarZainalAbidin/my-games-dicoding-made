@@ -10,14 +10,11 @@ jobs:
       tag: 2022.08.1
     steps:
       - checkout
-      - run:
-          name: Restore Gradle Cache
-          command: ./gradlew cleanBuildCache  # Assuming you want to clear the cache
-      - android/test: # Use the correct command for running tests
+      - android/restore-gradle-cache
+      - android/run-tests:  # Correct command to run unit tests
           test-command: ./gradlew testDebug
-      - run:
-          name: Save Gradle Cache
-          command: ./gradlew build --scan # Adjust as necessary
+      - android/save-gradle-cache
+
   android-test:
     executor:
       name: android/android-machine
@@ -27,6 +24,7 @@ jobs:
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: system-images;android-30;google_apis;x86
+
   release-build:
     executor:
       name: android/android-machine
@@ -37,33 +35,32 @@ jobs:
       - android/restore-build-cache
       - run:
           name: Assemble release build
-          command: |
-            ./gradlew assembleRelease
+          command: ./gradlew assembleRelease
       - store_artifacts:
           path: app/build/outputs/apk/release
-  # We'll get to this later
 
 workflows:
   test-and-build:
     jobs:
       - unit-test
-      - android-test: # Commits to any branch - skip matrix of devices
+      - android-test:  # Commits to any branch - skip matrix of devices
           filters:
             branches:
               ignore: main
-      - android-test: # Commits to main branch only - run full matrix
+      - android-test:  # Commits to main branch only - run full matrix
           matrix:
             alias: android-test-all
             parameters:
               system-image:
                 - system-images;android-30;google_apis;x86
-#                - system-images;android-29;google_apis;x86
-#                - system-images;android-28;google_apis;x86
-#                - system-images;android-27;google_apis;x86
-#                - system-images;android-26;google_apis;x86
-#                - system-images;android-25;google_apis;x86
-#                - system-images;android-24;google_apis;x86
-#                - system-images;android-23;google_apis;x86
+                # Uncomment to include additional system images
+                # - system-images;android-29;google_apis;x86
+                # - system-images;android-28;google_apis;x86
+                # - system-images;android-27;google_apis;x86
+                # - system-images;android-26;google_apis;x86
+                # - system-images;android-25;google_apis;x86
+                # - system-images;android-24;google_apis;x86
+                # - system-images;android-23;google_apis;x86
           name: android-test-<<matrix.system-image>>
           filters:
             branches:
@@ -74,5 +71,4 @@ workflows:
             - android-test-all
           filters:
             branches:
-              only: main # Commits to main branch
-  # We'll get to this later
+              only: main  # Commits to main branch
