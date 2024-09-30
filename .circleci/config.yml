@@ -10,10 +10,14 @@ jobs:
       tag: 2022.08.1
     steps:
       - checkout
-      - android/restore-gradle-cache
+      - run:
+          name: Restore Gradle Cache
+          command: ./gradlew cleanBuildCache  # Assuming you want to clear the cache
       - android/run-tests:
           test-command: ./gradlew testDebug
-      - android/save-gradle-cache
+      - run:
+          name: Save Gradle Cache
+          command: ./gradlew build --scan # Adjust as necessary
   android-test:
     executor:
       name: android/android-machine
