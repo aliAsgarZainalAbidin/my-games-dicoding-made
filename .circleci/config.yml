@@ -41,7 +41,7 @@ workflows:
       - release-build:
           requires:
             - unit-test
-            - android-test-all
+            - android-test
           filters:
             branches:
               only: main  # Commits to main branch
