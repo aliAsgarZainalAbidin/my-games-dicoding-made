@@ -10,9 +10,9 @@ version: 2.1
 executors:
   android-executor:
     docker:
-      - image: circleci/android:api-30  # Ganti image ini sesuai kebutuhan
+      - image: circleci/android:api-30  # or change to api-31
     environment:
-      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64  # Set JAVA_HOME ke Java 17
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64  # Set JAVA_HOME to Java 17
       GRADLE_OPTS: '-Dorg.gradle.jvmargs=-Xmx4096m -Dorg.gradle.daemon=false'
 
 jobs:
@@ -23,13 +23,12 @@ jobs:
       - run:
           name: Setup Java 17
           command: |
-            sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C0BA5CE6DC6315A3
             sudo apt update
-            sudo apt-get update
-            sudo apt install google-cloud-sdk
-            sudo apt-get install openjdk-17-jdk
-            sudo update-alternatives --config java
-            java -version  # Verifikasi versi Java
+            sudo apt install -y software-properties-common
+            sudo add-apt-repository ppa:openjdk-r/ppa -y
+            sudo apt update
+            sudo apt install -y openjdk-17-jdk
+            java -version  # Verify Java version
       - run:
           name: Build
           command: ./gradlew assembleDebug
