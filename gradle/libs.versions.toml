@@ -31,6 +31,7 @@ arch = "2.2.0"
 kotlinxCoroutinesTest = "1.7.1"
 androidDatabaseSqlcipher = "4.5.4"
 sqliteKtx = "2.4.0"
+leakCanary = "2.10"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -87,6 +88,9 @@ hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref="
 
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide-version"}
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide-version"}
+
+#LeakCanary
+leakCanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakCanary"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

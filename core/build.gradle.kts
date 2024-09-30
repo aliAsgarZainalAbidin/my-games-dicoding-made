@@ -102,4 +102,7 @@ dependencies {
     //Encrypt Db
     implementation(libs.android.database.sqlcipher)
     implementation(libs.androidx.sqlite.ktx)
+
+//    LeakCanary
+    debugImplementation(libs.leakCanary)
 }
