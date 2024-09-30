@@ -14,9 +14,8 @@ jobs:
           command: ./gradlew testDebug
 
   android-test:
-    executor:
-      name: android/android-machine
-      resource-class: xlarge
+    docker:
+      - image: circleci/android:api-30
     steps:
       - checkout
       - run:
