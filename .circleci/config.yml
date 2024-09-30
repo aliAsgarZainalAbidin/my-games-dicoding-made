@@ -50,15 +50,15 @@ workflows:
             parameters:
               api-level:
                 - 30
-                # Uncomment to include additional system images
-                # - system-images;android-29;google_apis;x86
-                # - system-images;android-28;google_apis;x86
-                # - system-images;android-27;google_apis;x86
-                # - system-images;android-26;google_apis;x86
-                # - system-images;android-25;google_apis;x86
-                # - system-images;android-24;google_apis;x86
-                # - system-images;android-23;google_apis;x86
-          name: android-test-<<matrix.system-image>>
+                # Uncomment to include additional API levels
+                # - 29
+                # - 28
+                # - 27
+                # - 26
+                # - 25
+                # - 24
+                # - 23
+          name: android-test-<< matrix.api-level >>  # Use correct parameter name
           filters:
             branches:
               only: main
