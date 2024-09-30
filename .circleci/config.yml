@@ -7,6 +7,8 @@ jobs:
   unit-test:
     docker:
       - image: circleci/android:api-30
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk
     steps:
       - checkout
       - run:
@@ -19,6 +21,8 @@ jobs:
   android-test:
     docker:
       - image: circleci/android:api-30
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk
     steps:
       - checkout
       - run:
@@ -31,6 +35,8 @@ jobs:
   release-build:
     docker:
       - image: circleci/android:api-30
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk
     steps:
       - checkout
       - run:
