@@ -6,8 +6,8 @@ orbs:
 jobs:
   unit-test:
     executor:
-      name: android/android-docker
-      tag: 2022.08.1
+      name: android/android-machine  # Use android-machine instead
+      resource-class: xlarge
     steps:
       - checkout
       - run: # Remove the restore-cache step
