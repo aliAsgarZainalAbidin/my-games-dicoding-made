@@ -7,9 +7,14 @@ jobs:
   unit-test:
     docker:
       - image: circleci/android:api-30
-      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
+      - run:
+          name: Install JDK 17
+          command: |
+            sudo apt-get update
+            sudo apt-get install openjdk-17-jdk
+            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - run:
           name: Make gradlew executable
           command: chmod +x gradlew
@@ -20,9 +25,14 @@ jobs:
   android-test:
     docker:
       - image: circleci/android:api-30
-      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
+      - run:
+          name: Install JDK 17
+          command: |
+            sudo apt-get update
+            sudo apt-get install openjdk-17-jdk
+            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - run:
           name: Make gradlew executable
           command: chmod +x gradlew
@@ -33,9 +43,14 @@ jobs:
   release-build:
     docker:
       - image: circleci/android:api-30
-      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
+      - run:
+          name: Install JDK 17
+          command: |
+            sudo apt-get update
+            sudo apt-get install openjdk-17-jdk
+            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - run:
           name: Make gradlew executable
           command: chmod +x gradlew
