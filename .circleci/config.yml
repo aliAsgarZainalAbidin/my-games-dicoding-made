@@ -15,7 +15,10 @@ jobs:
 
   android-test:
     docker:
-      - image: circleci/android:api-30
+      - image: circleci/android:api-<< api-level >>  # Use the parameter for the API level
+    parameters:
+      api-level:
+        type: integer
     steps:
       - checkout
       - run:
