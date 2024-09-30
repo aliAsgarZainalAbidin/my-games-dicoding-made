@@ -19,7 +19,7 @@ jobs:
       resource-class: xlarge
     steps:
       - checkout
-      - android/start-emulator-and-run-tests:
+      - android/run-tests: # Use the correct command for running tests
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: system-images;android-30;google_apis;x86
 
