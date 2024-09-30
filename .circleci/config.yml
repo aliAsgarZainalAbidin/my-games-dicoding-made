@@ -48,8 +48,8 @@ workflows:
           matrix:
             alias: android-test-all
             parameters:
-              system-image:
-                - system-images;android-30;google_apis;x86
+              api-level:
+                - 30
                 # Uncomment to include additional system images
                 # - system-images;android-29;google_apis;x86
                 # - system-images;android-28;google_apis;x86
