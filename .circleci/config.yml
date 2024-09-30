@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Restore Gradle Cache
           command: ./gradlew cleanBuildCache  # Assuming you want to clear the cache
-      - android/run-tests:
+      - android/test: # Use the correct command for running tests
           test-command: ./gradlew testDebug
       - run:
           name: Save Gradle Cache
