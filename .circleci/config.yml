@@ -5,9 +5,8 @@ orbs:
 
 jobs:
   unit-test:
-    executor:
-      name: android/android-machine  # Use android-machine instead
-      resource-class: xlarge
+    docker:
+      - image: circleci/android:api-30
     steps:
       - checkout
       - run: # Remove the restore-cache step
