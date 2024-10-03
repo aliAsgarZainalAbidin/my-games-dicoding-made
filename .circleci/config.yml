@@ -4,17 +4,20 @@ orbs:
   android: circleci/android@0.2.1
 
 jobs:
+  install-jdk:
+    steps:
+      - checkout
+      - run:
+          name: Install OpenJDK 17
+          command: |
+            sudo apt-get update && sudo apt-get install openjdk-17-jdk
+            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+            sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
+            java -version
   unit-test:
     docker:
       - image: circleci/android:api-30
     steps:
-      - checkout
-      - run:
-          name: Install JDK 17
-          command: |
-            sudo apt-get update
-            sudo apt-get install openjdk-17-jdk
-            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - run:
           name: Make gradlew executable
           command: chmod +x gradlew
@@ -26,13 +29,6 @@ jobs:
     docker:
       - image: circleci/android:api-30
     steps:
-      - checkout
-      - run:
-          name: Install JDK 17
-          command: |
-            sudo apt-get update
-            sudo apt-get install openjdk-17-jdk
-            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - run:
           name: Make gradlew executable
           command: chmod +x gradlew
@@ -44,13 +40,6 @@ jobs:
     docker:
       - image: circleci/android:api-30
     steps:
-      - checkout
-      - run:
-          name: Install JDK 17
-          command: |
-            sudo apt-get update
-            sudo apt-get install openjdk-17-jdk
-            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - run:
           name: Make gradlew executable
           command: chmod +x gradlew
@@ -63,8 +52,13 @@ jobs:
 workflows:
   test-and-build:
     jobs:
-      - unit-test
-      - android-test # Commits to any branch - skip matrix of devices
+      - install-jdk
+      - unit-test:
+          requires:
+            - install-jdk
+      - android-test: # Commits to any branch - skip matrix of devices
+          requires:
+            - install-jdk
       - release-build:
           requires:
             - unit-test
